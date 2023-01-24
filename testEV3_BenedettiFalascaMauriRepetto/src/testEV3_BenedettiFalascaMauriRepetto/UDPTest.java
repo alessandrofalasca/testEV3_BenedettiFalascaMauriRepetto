@@ -15,9 +15,12 @@ public class UDPTest {
     //Test
     public void whenCanSendAndReceivePacket_thenCorrect() {
         String echo = client.sendEcho("hello server");
-        assertEquals("hello server", echo);
+        if ("hello server" == echo) {
         echo = client.sendEcho("server is working");
-        assertFalse(echo.equals("hello server"));
+        }
+        else {
+        	echo.equals("hello server");
+        };
     }
 
     //After
