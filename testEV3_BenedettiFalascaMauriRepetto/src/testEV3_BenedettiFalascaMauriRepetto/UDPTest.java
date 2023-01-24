@@ -1,8 +1,5 @@
 package testEV3_BenedettiFalascaMauriRepetto;
 
-import java.io.IOException;
-import java.net.*;
-
 public class UDPTest {
     EchoClient client;
 
@@ -15,12 +12,12 @@ public class UDPTest {
     //Test
     public void whenCanSendAndReceivePacket_thenCorrect() {
         String echo = client.sendEcho("hello server");
-        if ("hello server" == echo) {
-        echo = client.sendEcho("server is working");
+        if(echo.equals("hello server") == true) {
+        	echo = client.sendEcho("server is working");
         }
         else {
-        	echo.equals("hello server");
-        };
+        	echo.equals("hello server not working");
+        }
     }
 
     //After
