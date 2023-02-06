@@ -17,6 +17,8 @@ public class Comandi{
 	ServerSocket serverSocket = null;
 	DataInputStream receive = null;
 
+	int i = 0;
+
 	RegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.B);
 	RegulatedMotor bucket = new EV3MediumRegulatedMotor(MotorPort.C);
@@ -93,44 +95,49 @@ public class Comandi{
 				case 6:
 					System.out.println("VITTORIA REALE!!!");
 					motorLeft.setSpeed(900);
-					motorRight.setSpeed(0);
+					motorRight.setSpeed(-900);
 
 					motorLeft.forward();
+					motorRight.backward();
 
-					bucket.setSpeed(-900);
-					bucket.backward();
+					while(i<=10) {
+						bucket.setSpeed(-900);
+						bucket.backward();
 
-					Delay.msDelay(500);
-					
-					bucket.stop();
+						Delay.msDelay(150);
 
-					bucket.setSpeed(900);
-					bucket.forward();
-					
-					Delay.msDelay(500);
-					
-					bucket.stop();
+						bucket.stop();
+
+						bucket.setSpeed(900);
+						bucket.forward();
+
+						Delay.msDelay(150);
+
+						bucket.stop();
+
+						i++;
+					}
 
 					break;
 
 				case 7:
-					System.out.println("Ruspaaa!!!");
+					System.out.println("cmd \"k\": ruspa giu");
 					bucket.setSpeed(-900);
 					bucket.backward();
-					
-					Delay.msDelay(500);
-					
+
+					Delay.msDelay(150);
+
 					bucket.stop();
 
 					break;
 
 				case 8:
-					System.out.println("Ruspaaa!!!");
+					System.out.println("cmd \"l\": ruspa su");
 					bucket.setSpeed(900);
 					bucket.forward();
 
-					Delay.msDelay(500);
-					
+					Delay.msDelay(150);
+
 					bucket.stop();
 				}
 			}
