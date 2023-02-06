@@ -39,8 +39,6 @@ public class Comandi{
 					System.out.println(b);
 				}
 				
-				//RobotCommands RobotCommands = new RobotCommands();
-				
 				switch(n) {
 					case 1:
 						System.out.println("cmd \"w\": avanti");
@@ -50,8 +48,6 @@ public class Comandi{
 						motorLeft.forward();
 						motorRight.forward();
 						
-						motorLeft.stop();
-						motorRight.stop();
 						break;
 					case 2:
 						System.out.println("cmd \"s\": indietro");
@@ -60,9 +56,7 @@ public class Comandi{
 						
 						motorLeft.backward();
 						motorRight.backward();
-						
-						motorLeft.stop();
-						motorRight.stop();
+
 						break;
 					case 3:
 						System.out.println("cmd \"a\": sinistra");
@@ -71,9 +65,7 @@ public class Comandi{
 						
 						motorLeft.forward();
 						motorRight.forward();
-						
-						motorLeft.stop();
-						motorRight.stop();	
+	
 						break;
 					case 4:
 						System.out.println("cmd \"d\": destra");
@@ -82,9 +74,7 @@ public class Comandi{
 						
 						motorLeft.forward();
 						motorRight.forward();
-						
-						motorLeft.stop();
-						motorRight.stop();
+
 						break;
 					case 5:
 						System.out.println("Server sta chiudendo la connessione!");
