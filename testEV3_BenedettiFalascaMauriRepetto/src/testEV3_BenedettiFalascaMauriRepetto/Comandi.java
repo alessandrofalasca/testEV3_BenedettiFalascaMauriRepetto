@@ -14,23 +14,23 @@ public class Comandi{
 	Socket clientSocket = null;
 	ServerSocket serverSocket = null;
 	DataInputStream receive = null;
-	
+
 	RegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.B);
-	
+
 	public void Connetti() {
 		try {
 			serverSocket = new ServerSocket(7000);
 			System.out.println("Server in ascolto");
-			
+
 			System.out.println("Aspettando una\n"
-								+ "connessione...");
-				
+					+ "connessione...");
+
 			clientSocket = serverSocket.accept();
 			System.out.println("Client connesso!");
-				
+
 			receive = new DataInputStream(clientSocket.getInputStream());
-			
+
 			int n = 0;
 			while(true) {
 				try {
@@ -38,48 +38,48 @@ public class Comandi{
 				} catch(IOException b) {
 					System.out.println(b);
 				}
-				
+
 				switch(n) {
-					case 1:
-						System.out.println("cmd \"w\": avanti");
-						motorLeft.setSpeed(500);
-						motorRight.setSpeed(500);
-						
-						motorLeft.forward();
-						motorRight.forward();
-						
-						break;
-					case 2:
-						System.out.println("cmd \"s\": indietro");
-						motorLeft.setSpeed(-500);
-						motorRight.setSpeed(-500);
-						
-						motorLeft.backward();
-						motorRight.backward();
+				case 1:
+					System.out.println("cmd \"w\": avanti");
+					motorLeft.setSpeed(900);
+					motorRight.setSpeed(900);
 
-						break;
-					case 3:
-						System.out.println("cmd \"a\": sinistra");
-						motorLeft.setSpeed(500);
-						motorRight.setSpeed(700);
-						
-						motorLeft.forward();
-						motorRight.forward();
-	
-						break;
-					case 4:
-						System.out.println("cmd \"d\": destra");
-						motorLeft.setSpeed(700);
-						motorRight.setSpeed(500);
-						
-						motorLeft.forward();
-						motorRight.forward();
+					motorLeft.forward();
+					motorRight.forward();
 
-						break;
-					case 5:
-						System.out.println("Server sta chiudendo la connessione!");
-						clientSocket.close();
-						receive.close();
+					break;
+				case 2:
+					System.out.println("cmd \"s\": indietro");
+					motorLeft.setSpeed(-900);
+					motorRight.setSpeed(-900);
+
+					motorLeft.backward();
+					motorRight.backward();
+
+					break;
+				case 3:
+					System.out.println("cmd \"a\": sinistra");
+					motorLeft.setSpeed(700);
+					motorRight.setSpeed(900);
+
+					motorLeft.forward();
+					motorRight.forward();
+
+					break;
+				case 4:
+					System.out.println("cmd \"d\": destra");
+					motorLeft.setSpeed(900);
+					motorRight.setSpeed(700);
+
+					motorLeft.forward();
+					motorRight.forward();
+
+					break;
+				case 5:
+					System.out.println("cmd \"c\": stop");
+					motorLeft.setSpeed(0);
+					motorRight.setSpeed(0);
 				}
 			}	
 		} catch(IOException a) {
