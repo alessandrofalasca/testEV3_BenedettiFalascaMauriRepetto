@@ -6,8 +6,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
+import lejos.utility.Delay;
 
 public class Comandi{
 
@@ -17,6 +19,7 @@ public class Comandi{
 
 	RegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.B);
+	RegulatedMotor bucket = new EV3MediumRegulatedMotor(MotorPort.C);
 
 	public void Connetti() {
 		try {
@@ -49,6 +52,7 @@ public class Comandi{
 					motorRight.forward();
 
 					break;
+
 				case 2:
 					System.out.println("cmd \"s\": indietro");
 					motorLeft.setSpeed(-900);
@@ -58,6 +62,7 @@ public class Comandi{
 					motorRight.backward();
 
 					break;
+
 				case 3:
 					System.out.println("cmd \"a\": sinistra");
 					motorLeft.setSpeed(700);
@@ -67,6 +72,7 @@ public class Comandi{
 					motorRight.forward();
 
 					break;
+
 				case 4:
 					System.out.println("cmd \"d\": destra");
 					motorLeft.setSpeed(900);
@@ -76,12 +82,58 @@ public class Comandi{
 					motorRight.forward();
 
 					break;
+
 				case 5:
 					System.out.println("cmd \"c\": stop");
 					motorLeft.setSpeed(0);
 					motorRight.setSpeed(0);
+
+					break;
+
+				case 6:
+					System.out.println("VITTORIA REALE!!!");
+					motorLeft.setSpeed(900);
+					motorRight.setSpeed(0);
+
+					motorLeft.forward();
+
+					bucket.setSpeed(-900);
+					bucket.backward();
+
+					Delay.msDelay(500);
+					
+					bucket.stop();
+
+					bucket.setSpeed(900);
+					bucket.forward();
+					
+					Delay.msDelay(500);
+					
+					bucket.stop();
+
+					break;
+
+				case 7:
+					System.out.println("Ruspaaa!!!");
+					bucket.setSpeed(-900);
+					bucket.backward();
+					
+					Delay.msDelay(500);
+					
+					bucket.stop();
+
+					break;
+
+				case 8:
+					System.out.println("Ruspaaa!!!");
+					bucket.setSpeed(900);
+					bucket.forward();
+
+					Delay.msDelay(500);
+					
+					bucket.stop();
 				}
-			}	
+			}
 		} catch(IOException a) {
 			System.out.println(a);
 		}	
