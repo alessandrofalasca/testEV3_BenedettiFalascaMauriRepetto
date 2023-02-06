@@ -3,69 +3,58 @@ package testEV3_BenedettiFalascaMauriRepetto;
 import lejos.hardware.motor.*;
 import lejos.hardware.port.*;
 import lejos.robotics.*;
-import lejos.utility.*;
 
 public class RobotCommands {
 	
-	RegulatedMotor mL = new EV3LargeRegulatedMotor(MotorPort.B);
-	RegulatedMotor mR = new EV3LargeRegulatedMotor(MotorPort.C);
-	
+	//RegulatedMotor ruspa = new EV3LargeRegulatedMotor(MotorPort.A);
+	RegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.A);
+	RegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.B);
 	
 	public void avanti() {
 		
-		mL.setSpeed(720);
-		mR.setSpeed(720);
+		motorLeft.setSpeed(500);
+		motorRight.setSpeed(500);
 		
-		mL.forward();
-		mR.forward();
+		motorLeft.forward();
+		motorRight.forward();
 		
-		Delay.msDelay(5000);
-		
-		mL.stop();
-		mR.stop();
+		motorLeft.stop();
+		motorRight.stop();
 	}
 	
-	public void indietro() {		
-		mL.setAcceleration(-220);
-		mR.setAcceleration(-220);
+	public void indietro() {
 		
-		mL.setSpeed(720);
-		mR.setSpeed(720);
+		//motorLeft.setSpeed(-500);
+		//motorRight.setSpeed(-500);
 		
-		mL.backward();
-		mR.backward();
+		motorLeft.backward();
+		motorRight.backward();
 		
-		Delay.msDelay(5000);
-		
-		mL.stop();
-		mR.stop();
+		motorLeft.stop();
+		motorRight.stop();
 	}
 	
 	public void destra() {
 
-		mL.setSpeed(720);
-		mR.setSpeed(520);
+		motorLeft.setSpeed(700);
+		motorRight.setSpeed(500);
 		
-		mL.backward();
-		mR.backward();
+		motorLeft.forward();
+		motorRight.forward();
 		
-		Delay.msDelay(5000);
-		
-		mL.stop();
-		mR.stop();
+		motorLeft.stop();
+		motorRight.stop();
 	}
 	
 	public void sinistra() {
 		
-		mL.setSpeed(520);
-		mR.setSpeed(720);
+		motorLeft.setSpeed(500);
+		motorRight.setSpeed(700);
 		
-		mL.backward();
-		mR.backward();
+		motorLeft.forward();
+		motorRight.forward();
 		
-		Delay.msDelay(5000);
-		
-		mL.stop();
-		mR.stop();	
+		motorLeft.stop();
+		motorRight.stop();	
 	}
 }
