@@ -8,6 +8,7 @@ import java.net.Socket;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
+import lejos.hardware.Sound;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
@@ -16,8 +17,6 @@ public class Comandi{
 	Socket clientSocket = null;
 	ServerSocket serverSocket = null;
 	DataInputStream receive = null;
-
-	int i = 0;
 
 	RegulatedMotor motorLeft = new EV3LargeRegulatedMotor(MotorPort.A);
 	RegulatedMotor motorRight = new EV3LargeRegulatedMotor(MotorPort.B);
@@ -33,6 +32,8 @@ public class Comandi{
 
 			clientSocket = serverSocket.accept();
 			System.out.println("Client connesso!");
+
+			Sound.beepSequenceUp();
 
 			receive = new DataInputStream(clientSocket.getInputStream());
 
@@ -90,17 +91,25 @@ public class Comandi{
 					motorLeft.setSpeed(0);
 					motorRight.setSpeed(0);
 
+					Sound.beepSequence();
+
 					break;
 
 				case 6:
-					System.out.println("VITTORIA REALE!!!");
+
 					motorLeft.setSpeed(900);
 					motorRight.setSpeed(-900);
 
 					motorLeft.forward();
 					motorRight.backward();
 
-					while(i<=10) {
+					int i = 0;
+
+					while(i <= 10) {
+						System.out.println("VITTORIA REALE!!!");
+						
+						Sound.buzz();
+
 						bucket.setSpeed(-900);
 						bucket.backward();
 
@@ -139,7 +148,21 @@ public class Comandi{
 					Delay.msDelay(150);
 
 					bucket.stop();
+
+					break;
+
+				case 9:
+					System.out.println("cmd \"r\": testacoda");
+					motorLeft.setSpeed(900);
+					motorRight.setSpeed(-900);
+
+					motorLeft.forward();
+					motorRight.backward();
+
+					break;
+
 				}
+
 			}
 		} catch(IOException a) {
 			System.out.println(a);

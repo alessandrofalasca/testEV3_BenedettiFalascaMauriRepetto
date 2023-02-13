@@ -91,6 +91,21 @@ public class Client implements KeyListener {
 				System.out.println(p);
 			}
 		}
+		
+		if(e.getKeyChar() == 'r') {
+			try {
+				send.writeInt(9);	
+			} catch(IOException p) {
+				System.out.println(p);
+			}
+		}
+		if(e.getKeyChar() == 'o') {
+			try {
+				send.writeInt(10);	
+			} catch(IOException u) {
+				System.out.println(u);
+			}
+		}
 	}
 
 	@Override
